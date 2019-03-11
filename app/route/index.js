@@ -15,6 +15,7 @@ import GradeScreen from '../screen/grade'
 import ProfileScreen from '../screen/profile'
 import DetailScreen from '../screen/details'
 import LoginScreen from '../screen/login'
+import WelcomeScreen from '../screen/welcome'
 const HomeTab = createStackNavigator({
   HomeStack: {
     screen: HomeScreen,
@@ -85,6 +86,7 @@ const TabNavigation = createBottomTabNavigator({
 
   });
   const AppStack = createSwitchNavigator({
+    Welcome:WelcomeScreen,
     Login: LoginScreen,
     Navigation:TabNavigation
   })

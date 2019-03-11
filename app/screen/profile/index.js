@@ -4,19 +4,28 @@ import { View, Text, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 
 import PHeader from '../../components/pheader'
 import Header from '../../components/header'
+import {inject, observer} from 'mobx-react'
 // create a component
+@inject("auth")
+@observer
 class ProfileScreen extends Component {
+    _onBack = ()=>{
+        this.props.navigation.goBack()
+    }
+    _onSignOut=()=>{
+        this.props.auth.logOut()
+        this.props.navigation.navigate("Login")
+    }
+
+
     render() {
-        _onBack = ()=>{
-            this.props.navigation.goBack()
-        }
         return (
             <View style={styles.container}>
                 <SafeAreaView style={styles.container}>
                     {/* <Header /> */}
                     <ScrollView >
 
-                        <PHeader onClick={_onBack}/>
+                        <PHeader onClick={()=>this._onBack()} onSignOut={()=>this._onSignOut()} />
                         <View style={styles.buttom}></View>
                     </ScrollView>
                 </SafeAreaView>
