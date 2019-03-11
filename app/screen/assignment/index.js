@@ -6,10 +6,11 @@ import {
   StyleSheet,
   SafeAreaView,
   ImageBackground,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import moment from "moment";
-import ICon from 'react-native-vector-icons/MaterialIcons'
+import ICon from 'react-native-vector-icons/Ionicons'
+import { ScrollView } from "react-native-gesture-handler";
 
 // create a component
 class AssignmentScreen extends Component {
@@ -34,41 +35,51 @@ class AssignmentScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <ImageBackground
+        <View
           style={styles.ImageBackground}
-          source={require("../../img/images.jpeg")}
+          // source={require("../../img/images.jpeg")}
         >
         <SafeAreaView style={styles.Header}>
         <View style={{flexDirection:"row", alignItems: "center",justifyContent: "space-between"}}>
         <TouchableOpacity>
-        <ICon style={styles.icon} name="arrow-back"/>
+        <ICon style={styles.icon} name="ios-arrow-back"/>
         </TouchableOpacity>
         <TouchableOpacity>
-        <ICon style={styles.icon} name="more-vert"/>
+        <ICon style={styles.icon} name="ios-more"/>
         </TouchableOpacity>
         </View>
-          <View style={{paddingTop:25}}>
-            <View style={{ justifyContent: "flex-end", }}>
-              <View style={{marginBottom:12}}>
-                <Text style={{color:"#000", fontSize:28,fontWeight:'500'}}>Major</Text>
-                <Text style={{color:"#fff",fontSize:22, fontWeight:'200'}}>Class Name</Text>
-                <Text style={{color:"#fff", fontSize:22, fontWeight:'200'}}>Floor/ building/Campus</Text>
+          <View style={{paddingTop:12,}}>
+            <View >
+              <View>
+              <View style={[styles.row, styles.m10]}>
+                <Text style={{color:"#2b2b2b", fontSize:20,fontWeight:'600', flex:1}}>Introduction to Computer </Text>
+                <Text style={{color:"#2b2b2b",fontSize:11, fontWeight:'200'}}>COM 204</Text>
+                </View>
+                <View style={styles.row}>
+                <ICon style={styles.si} name="ios-beer"/>
+                <Text style={{color:"#2b2b2b", fontSize:14, fontWeight:'200'}}>From: 08:00 am to 09:30</Text>
+                </View>
+                <View style={styles.row}>
+                <ICon style={styles.si} name="ios-calendar"/>
+                <Text style={{color:"#2b2b2b", fontSize:14, fontWeight:'200'}}>Tue / Th</Text>
+                </View>
               </View>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: 'flex-end',
-                  
-                }}
-              >
-                <Text style={{ fontSize: 26, color: "#000" }}>Python</Text>
-                <Text style={{ fontSize: 26, color: "#fff" }}>8:00-11:00/Th</Text>
-              </View>
+               <View style={styles.row}>
+                <ICon style={styles.si} name="ios-school"/>
+                <Text style={{color:"#2b2b2b", fontSize:14, fontWeight:'200'}}>Major: Computer Science</Text>
+                </View>
+
+              
+              
             </View>
           </View>
           </SafeAreaView>
-        </ImageBackground>
+        </View>
+        <ScrollView>
+                <View style={{margin: 22}}>
+                <Text style={styles.title}>Student List</Text>
+                </View>
+        </ScrollView>
       </View>
     );
   }
@@ -81,15 +92,34 @@ const styles = StyleSheet.create({
     backgroundColor: "#f0f0f0"
   },
   ImageBackground: {
-    height: 250
+    height: 250,
+    backgroundColor: "#f8f9fa"
   },
   Header:{
     margin:22,
   },
   icon:{
     fontSize:32,
-    color:'#fff'
-  }
+    color:'#2d2d2d'
+  },
+  si:{
+    fontSize:15,
+    color:'#2b2b2b',
+    marginRight: 15,
+  },
+  title:{
+    fontWeight:'600',
+    fontSize:22,
+   
+  },
+   row:{
+     flexDirection: 'row',
+     alignItems: 'center',
+     marginBottom: 5,
+   },
+   m10:{
+    marginBottom: 10,
+   }
 });
 
 
