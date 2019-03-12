@@ -13,6 +13,8 @@ export default class Auth {
     authStateChange(ref => {
       if (ref) {
         const { uid } = ref;
+        this.uid=uid;
+        console.log(uid)
         callback(true, uid);
       } else {
         callback(false, null);

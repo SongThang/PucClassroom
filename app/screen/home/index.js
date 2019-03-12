@@ -1,5 +1,6 @@
 //import liraries
 import React, { Component } from 'react';
+import {inject,observer} from 'mobx-react';
 import { View, Text, SafeAreaView, ScrollView } from 'react-native';
 import style from '../../style/index'
 import Header from '../../components/header'
@@ -8,8 +9,23 @@ import HeaderTxt from '../../components/txtHeader'
 import Schedule from '../../components/schedule'
 import Classroom from '../../components/classroom'
 import PHeader from '../../components/pheader'
+
+@inject("schedule","environment","auth")
+@observer
 // create a component
 class HomeScreen extends Component {
+    componentDidMount(){
+        const {uid}=this.props.auth;
+        this.props.environment.fetchEnvironmentToArray(req=>{
+            const {term}=this.props.environment;
+            console.log(term);
+            if(term){
+                this.props.schedule.fetchData(term.key,'wM0b617idwIsFW9ssEWw');
+                this.props.schedule.fetchStudentList(term.key,'A1CTPcmHjYv7tUnioCaB');
+            }
+        })
+    }
+    
     render() {
         _onProfile = ()=>{
             this.props.navigation.navigate("Profile")}
