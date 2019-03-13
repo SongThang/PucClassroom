@@ -17,34 +17,18 @@ import DetailScreen from '../screen/details'
 import LoginScreen from '../screen/login'
 import WelcomeScreen from '../screen/welcome'
 const HomeTab = createStackNavigator({
-  HomeStack: {
-    screen: HomeScreen,
-    navigationOptions: { header: null, headMode: 'none' }
-  },
-  Profile: {
-    screen: ProfileScreen,
-    navigationOptions: {
-      header: null, headMode: 'none',
-      tabBarVisible: null,  tabBarVisible: 'none',
-
-    },
-    tabBarVisible: false,
-    
-  },
-  Details:{
-    screen: DetailScreen,
-    navigationOptions: {
-      header: null, headMode: 'none'
-
-    },
-  }
+  HomeStack:HomeScreen,
+  Profile: ProfileScreen,
+  Details:DetailScreen,
+  },{
+    headerMode:"none"
   })
 const TabNavigation = createBottomTabNavigator({
   Home: HomeTab,
-  Assignment: AssignmentScreen,
+  Assignment:AssignmentScreen,
   Grade: GradeScreen,
   // Profile: ProfileScreen,
-}, {
+},{
     defaultNavigationOptions: ({ navigation }) => ({
 
       tabBarIcon: ({ tintColor }) => {

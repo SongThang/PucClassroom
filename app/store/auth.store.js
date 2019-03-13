@@ -26,8 +26,8 @@ export default class Auth {
   login(email, password, callback) {
     this.loading = true;
     logIn(email, password)
-      .then(rea => {
-        callback(true, rea);
+      .then((req) => {
+        callback(true, req);
         this.loading = false;
       })
       .catch(error => {

@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, TouchableOpacity, ImageBackground } from 'react
 import Icon from 'react-native-vector-icons/Feather'
 
 
-export default Classroom =({name,onClick,status})=> {
+export default Classroom =({courseCode,onClick,status})=> {
         const verify = status ? '#2CFF1A' : '#ef7164'
         const icon = status ? 'check-circle' : 'x-circle';
         return (
@@ -22,7 +22,7 @@ export default Classroom =({name,onClick,status})=> {
                                     alignItems: 'center',
                                 }} >
                                    
-                                    <Text style={styles.floor}>{name}</Text>
+                                    <Text style={styles.floor}>{courseCode}</Text>
                                 </View>
 
                             </View>                      

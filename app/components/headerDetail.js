@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet, View,SafeAreaView,TouchableOpacity, } from 'react-native'
 import ICon from 'react-native-vector-icons/Ionicons'
-export default class headerDetail extends Component {
-  render() {
+export default headerDetail =({subject,courseCode, fromH, toH, date, major,floor, roomName,building })=> {
+
     return (
       <View>
         <View
@@ -10,20 +10,6 @@ export default class headerDetail extends Component {
           // source={require("../../img/images.jpeg")}
         >
           <SafeAreaView style={styles.Header}>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between"
-              }}
-            >
-              <TouchableOpacity>
-                <ICon style={styles.icon} name="ios-arrow-back" />
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <ICon style={styles.icon} name="ios-more" />
-              </TouchableOpacity>
-            </View>
             <View style={{ paddingTop: 12 }}>
               <View>
                 <View>
@@ -36,7 +22,7 @@ export default class headerDetail extends Component {
                         flex: 1
                       }}
                     >
-                      Introduction to Computer{" "}
+                      {subject}
                     </Text>
                     <Text
                       style={{
@@ -45,7 +31,7 @@ export default class headerDetail extends Component {
                         fontWeight: "200"
                       }}
                     >
-                      COM 204
+                      {courseCode}
                     </Text>
                   </View>
                   <View style={styles.row}>
@@ -57,7 +43,7 @@ export default class headerDetail extends Component {
                         fontWeight: "200"
                       }}
                     >
-                      From: 08:00 am to 09:30
+                      {fromH} to {toH}
                     </Text>
                   </View>
                   <View style={styles.row}>
@@ -69,7 +55,7 @@ export default class headerDetail extends Component {
                         fontWeight: "200"
                       }}
                     >
-                      Tue / Th
+                     {date}
                     </Text>
                   </View>
                 </View>
@@ -82,20 +68,20 @@ export default class headerDetail extends Component {
                       fontWeight: "200"
                     }}
                   >
-                    Major: Computer Science
+                    {major}
                   </Text>
                 </View>
               </View>
             </View>
             <View style={styles.background}>
               <View style={styles.com}>
-                <Text>South Campus</Text>
+                <Text>{roomName}</Text>
               </View>
               <View style={styles.com}>
-                <Text>Main Building</Text>
+                <Text>{floor}</Text>
               </View>
               <View style={styles.com}>
-                <Text>BIS Lab</Text>
+                <Text>{building}</Text>
               </View>
             </View>
           </SafeAreaView>
@@ -103,15 +89,19 @@ export default class headerDetail extends Component {
       </View>
     )
   }
-}
+
 
 const styles = StyleSheet.create({
     ImageBackground: {
-        height: 250,
-        backgroundColor: "#f8f9fa"
+        height: 180,
+        backgroundColor: "#fff",
+        borderBottomLeftRadius:32,
+        borderBottomRightRadius: 32
       },
       Header: {
-        margin: 22
+        marginTop: 8,
+        marginRight: 22,
+        marginLeft: 22,
       },
       icon: {
         fontSize: 32,
@@ -136,12 +126,8 @@ const styles = StyleSheet.create({
         paddingTop: 12
       },
       com: {
-        borderColor: "#333",
-        borderWidth: 0.6,
-        width: 105,
-        height: 30,
         alignItems: "center",
         justifyContent: "center",
-        borderRadius: 12
+
       },
 })

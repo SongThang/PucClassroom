@@ -1,12 +1,13 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet,ImageBackground,Image } from 'react-native';
 
 // create a component
 class GradeScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
+                  {/* <Image style={{width:300,height:250}} source={require('https://cdn.dribbble.com/users/1162077/screenshots/5403918/focus-animation.gif')}/> */}
                 <Text>GradeScreen</Text>
             </View>
         );

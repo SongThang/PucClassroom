@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 // create a component
 class Schedule extends Component {
     render() {
-        const { onClick, roomname, fromTime, teacher, toTime, subject } = this.props
+        const { onClick, roomname, fromTime, toTime, subject } = this.props
         return (
             <TouchableOpacity onPress={onClick}>
                 <View style={styles.list}>
@@ -29,8 +29,8 @@ class Schedule extends Component {
                             </View>
                             <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                                 <View style={{ flex: 1 }}>
-                                    <Text style={styles.txtProf}>Prof. {teacher}</Text>
-                                    <Text style={styles.txtProf1}>{subject}</Text>
+                                    <Text style={styles.txtProf}>{subject}</Text>
+                                    
                                 </View>
                             </View>
 

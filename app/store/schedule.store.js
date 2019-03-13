@@ -7,6 +7,7 @@ export default class Schedule {
   @observable process = false;
   @observable data = null;
   @observable studentList = null;
+  @observable selectedClass=null;
 
   @action
   fetchData(termKey, uid) {
@@ -23,9 +24,14 @@ export default class Schedule {
     this.loading = true;
     getStudentList(termKey, classKey, req => {
       this.empty = req.length === 0;
-      console.log('req', req)
       this.studentList = req;
       this.loading = false;
     });
   }
+
+  @action
+  fetchSelectedClass(item){
+    this.selectedClass=item
+  }
+ 
 }

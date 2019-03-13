@@ -12,7 +12,8 @@ export default (StudentList = ({
   onPressIn,
   onPressOut,
   onSelected,
-  color
+  color,
+  Student,
 }) => {
   return (
     <View>
@@ -23,11 +24,17 @@ export default (StudentList = ({
           marginLeft: 12,
           marginTop: 12,
           padding: 12,
-          backgroundColor: "#f7f9fa"
+          backgroundColor: "#f7f9fa",
+          borderRadius:12,
+          borderBottomColor:'#CC61C8',
+          borderBottomWidth: 1
+
         }}
       >
-        <View style={{ marginLeft: 12 }}>
-          <Text style={{ fontSize: 16 }}>Hy Dely Ethan</Text>
+        <View style={{ marginLeft: 12, flexDirection:"row",}}>
+         <ICon style={styles.Icon} name="ios-contacts"/>
+          <Text style={{ fontSize: 16, paddingLeft:12 }}>{Student}</Text>
+          
         </View>
         <View
           style={{
@@ -38,28 +45,24 @@ export default (StudentList = ({
             flexDirection: "row"
           }}
         >
-          <TouchableWithoutFeedback
+          <TouchableOpacity
             onPress={onSelected}
             onPressIn={onPressIn}
             onPressOut={onPressOut}
           >
             <View style={styles.center}>
-              <ICon
-                style={{ fontSize: 28, color: color }}
-                name="ios-done-all"
-              />
               <Text style={{ color: color }}>Present</Text>
             </View>
-          </TouchableWithoutFeedback>
+          </TouchableOpacity>
           <TouchableOpacity>
             <View style={styles.center}>
-              <ICon style={{ fontSize: 26 }} name="ios-speedometer" />
+              
               <Text>Late</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity>
             <View style={styles.center}>
-              <ICon style={{ fontSize: 28 }} name="ios-close" />
+           
               <Text>Absent</Text>
             </View>
           </TouchableOpacity>
@@ -76,5 +79,8 @@ const styles = StyleSheet.create({
   },
   colorchange: {
     color: "blue"
+  },
+  Icon:{
+    fontSize:22,
   }
 });
