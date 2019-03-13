@@ -86,6 +86,7 @@ export default headerDetail =({subject,courseCode, fromH, toH, date, major,floor
             </View>
           </SafeAreaView>
         </View>
+        
       </View>
     )
   }
