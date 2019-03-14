@@ -8,6 +8,7 @@ export default class Schedule {
   @observable data = null;
   @observable studentList = null;
   @observable selectedClass=null;
+  @observable emptyStudent=false;
 
   @action
   fetchData(termKey, uid) {
@@ -23,7 +24,7 @@ export default class Schedule {
   fetchStudentList(termKey, classKey) {
     this.loading = true;
     getStudentList(termKey, classKey, req => {
-      this.empty = req.length === 0;
+      this.emptyStudent = req.length === 0;
       this.studentList = req;
       this.loading = false;
     });

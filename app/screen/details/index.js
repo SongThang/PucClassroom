@@ -1,17 +1,25 @@
 //import liraries
 import React, { Component } from "react";
-import { View, Text, StyleSheet,ScrollView,SafeAreaView,TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  SafeAreaView,
+  TouchableOpacity
+} from "react-native";
 import moment from "moment";
 import ICon from "react-native-vector-icons/Ionicons";
 import HeaderDetail from "../../components/headerDetail";
-import StudentList from "../../components/StudentList";
+import RnStudentList from "../../components/StudentList";
 import BackHeader from "../../components/backHeader";
-import LinearGradient from 'react-native-linear-gradient';
-import {
-  MaterialIndicator,
-} from 'react-native-indicators';
+import LinearGradient from "react-native-linear-gradient";
+import { MaterialIndicator } from "react-native-indicators";
 import { inject, observer } from "mobx-react";
 import { getDaysSchedule } from "../../service/format";
+import { FlatList } from "react-native-gesture-handler";
+import Modal from "react-native-modal";
+
 // create a component
 @inject("schedule")
 @observer
@@ -21,44 +29,70 @@ class AssignmentScreen extends Component {
     this.state = {
       curTime: new Date(),
       time: null,
-      color: "#000"
+      color: "#000",
+      isModalVisible: false,
+      
     };
   }
 
- _onBack=()=>{
-   this.props.navigation.goBack();
- }
- _renderHeaderItems = () => {
-    const{selectedClass}= this.props.schedule
-    console.log('selectedClass', selectedClass)
-    const { room, session, schedule_subject,major } = selectedClass;
-    const { RoomName,building, floor} = room;
-    const { fromHours, toHours ,days} = session;
+  _toggleModal = () =>
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+
+  _renderModal=()=>{
+    return(
+      <Modal isVisible={this.state.isModalVisible}>
+          <View style={{ flex: 1 }}>
+            <Text>Hello!</Text>
+            <TouchableOpacity onPress={this._toggleModal}>
+              <Text>Hide me!</Text>
+            </TouchableOpacity>
+          </View>
+        </Modal>
+    )
+  }
+  _onBack = () => {
+    this.props.navigation.goBack();
+  };
+  _renderHeaderItems = () => {
+    const { selectedClass } = this.props.schedule;
+    const { room, session, schedule_subject, major } = selectedClass;
+    const { RoomName, building, floor } = room;
+    const { fromHours, toHours, days } = session;
     const { code, name } = schedule_subject.subject;
-    const date =getDaysSchedule(days)
+    const date = getDaysSchedule(days);
     return (
       <HeaderDetail
-      subject={name}
-      courseCode={code}
-      fromH={fromHours} 
-      toH={toHours} 
-    date={date} 
-    major={major.MajorName} 
-    floor={floor.name} 
-    roomName={RoomName}
-    building={building.name}
-
+        subject={name}
+        courseCode={code}
+        fromH={fromHours}
+        toH={toHours}
+        date={date}
+        major={major.MajorName}
+        floor={floor.name}
+        roomName={RoomName}
+        building={building.name}
+      />
+    );
+  };
+  _renderStudentItems = item => {
+    return (
+      <RnStudentList
+      onSelected={()=>this._toggleModal()}
+      Student={item.student.full_name}
+      studentID={item.student.puc_id}
+      studentSex={item.student.gender.text}
       />
     );
   };
   render() {
+    const { studentList } = this.props.schedule;
     return (
       <View style={styles.container}>
-      <BackHeader onBack={()=>this._onBack()}/>
-      <ScrollView>
-      {this._renderHeaderItems()}
-        <View>
-        <View
+        <BackHeader onBack={() => this._onBack()} />
+        <ScrollView>
+          {this._renderHeaderItems()}
+          <View>
+            <View
               style={{
                 marginRight: 22,
                 marginTop: 12,
@@ -69,36 +103,23 @@ class AssignmentScreen extends Component {
             >
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <ICon
-                  style={{ paddingRight: 12, fontSize: 22,color:"blue" }}
+                  style={{ paddingRight: 12, fontSize: 22, color: "blue" }}
                   name="ios-clipboard"
                 />
                 <Text style={styles.title}>Student List</Text>
               </View>
             </View>
-           
-            <StudentList Student="Sitha"/>
-            <StudentList Student="Hy dely Ethan" />
-            <StudentList Student="Hok Pengleng"/>
-            <StudentList Student="Phon Vannaroth"/>
-            <StudentList Student="Sun Tekleang"/>
-            <StudentList Student="Sou Lyly"/>
-            <StudentList Student="JK Khemera"/>
-        </View>
-        <View style={styles.SummitButton}>
-        <TouchableOpacity onPress={this._onSummit}>
-                        <LinearGradient colors={['#0070c9', '#FFB51C', '#667db6',]} style={{ alignItems: 'center', marginTop: 22, borderRadius: 25, overflow: "hidden", height: 50, justifyContent: 'center', width: 300, }}>
-                            <LinearGradient colors={['#fff', '#fff', '#fff',]} style={{ alignItems: 'center', borderRadius: 29, overflow: "hidden", height: 48, justifyContent: 'center', width: 299, }}>
-                                        <View>
-                                            <Text style={styles.text} >Summit</Text>
-                                        </View>
-                                
-                            </LinearGradient>
-                        </LinearGradient>
-                    </TouchableOpacity>
-        </View>
-      </ScrollView>
+            {
+              <FlatList
+                data={studentList}
+                
+                renderItem={({ item, index }) => this._renderStudentItems(item)}
+              />
+            }
+          </View>
+        </ScrollView>
+        {this._renderModal}
       </View>
-      
     );
   }
 }
@@ -109,16 +130,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#f0f0f0"
   },
-  SummitButton:{
-  alignItems:'center',
+  SummitButton: {
+    alignItems: "center"
   },
   title: {
     fontWeight: "600",
     fontSize: 20
   },
-  text:{
-    fontSize:16,
-    color:'blue'
+  text: {
+    fontSize: 16,
+    color: "blue"
   }
 });
 

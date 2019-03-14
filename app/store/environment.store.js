@@ -18,7 +18,6 @@ export default class Environment{
                 const {term}=req;
                 this.term=term;
             }
-            console.log(req)
             this.config=req;
         })
     }

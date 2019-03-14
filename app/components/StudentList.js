@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Modal from 'react-native-modal'
 import {
   Text,
   StyleSheet,
@@ -9,11 +10,10 @@ import {
 import ICon from "react-native-vector-icons/Ionicons";
 
 export default (StudentList = ({
-  onPressIn,
-  onPressOut,
-  onSelected,
-  color,
+  studentSex,
   Student,
+  studentID,
+  onSelected
 }) => {
   return (
     <View>
@@ -27,46 +27,30 @@ export default (StudentList = ({
           backgroundColor: "#f7f9fa",
           borderRadius:12,
           borderBottomColor:'#CC61C8',
-          borderBottomWidth: 1
-
+          borderBottomWidth: 1,
+          justifyContent:"center"
         }}
       >
-        <View style={{ marginLeft: 12, flexDirection:"row",}}>
-         <ICon style={styles.Icon} name="ios-contacts"/>
+      <TouchableOpacity onPress={onSelected}>
+      <View style={{flexDirection: "row", justifyContent: "space-between",}}>
+        <View style={{ marginLeft: 12, flexDirection:"row",justifyContent: "center"}}>
+          <ICon style={styles.Icon} name="ios-contacts"/>
           <Text style={{ fontSize: 16, paddingLeft:12 }}>{Student}</Text>
-          
-        </View>
-        <View
-          style={{
-            marginTop: 12,
-            marginLeft: 12,
-            paddingRight: 12,
-            justifyContent: "space-between",
-            flexDirection: "row"
-          }}
-        >
-          <TouchableOpacity
-            onPress={onSelected}
-            onPressIn={onPressIn}
-            onPressOut={onPressOut}
-          >
-            <View style={styles.center}>
-              <Text style={{ color: color }}>Present</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <View style={styles.center}>
-              
-              <Text>Late</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <View style={styles.center}>
-           
-              <Text>Absent</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+          </View>
+          <View style={{ marginLeft: 12, flexDirection:"row",justifyContent: "center"}}>
+            <Text style={{ fontSize: 16, fontWeight:'300',paddingRight: 12 }}>{studentID}</Text>
+            <Text style={{ fontSize: 16, fontWeight:'300' }}>{studentSex}</Text>
+          </View>
+      </View>
+      </TouchableOpacity>
+      <Modal isVisible={this.state.isModalVisible}>
+          <View style={{ flex: 1 }}>
+            <Text>Hello!</Text>
+            <TouchableOpacity onPress={this._toggleModal}>
+              <Text>Hide me!</Text>
+            </TouchableOpacity>
+          </View>
+        </Modal>
       </View>
     </View>
   );
@@ -82,5 +66,13 @@ const styles = StyleSheet.create({
   },
   Icon:{
     fontSize:22,
-  }
+  },
+  status: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingLeft: 15,
+    paddingRight: 15,
+    height: 30,
+    borderRadius: 25
+},
 });
