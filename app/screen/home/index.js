@@ -27,23 +27,23 @@ class HomeScreen extends Component {
   _onProfile = () => {
     this.props.navigation.navigate("Profile");
   };
-  _onDetails = classKey => {
+  _onDetails = (classKey, item) => {
     const { term } = this.props.environment;
+    this.props.schedule.fetchSelectedClass(item);
     this.props.schedule.fetchStudentList(term.key, classKey);
     this.props.navigation.navigate("Details");
   };
   _onSingOut = () => {
     this.props.auth.logOut();
   };
-  _renderItems = (item) => {
-    this.props.schedule.fetchSelectedClass(item)
+  _renderItems = item => {
     const { room, session, schedule_subject, key } = item;
     const { RoomName } = room;
     const { fromHours, toHours } = session;
     const { code, name } = schedule_subject.subject;
     return (
       <Schedule
-        onClick={() => this._onDetails(key)}
+        onClick={() => this._onDetails(key, item)}
         roomname={RoomName}
         fromTime={fromHours}
         toTime={toHours}
@@ -63,11 +63,10 @@ class HomeScreen extends Component {
         <Header onClick={() => this._onProfile()} />
 
         <ScrollView showsVerticalScrollIndicator={false}>
-          {/* <PHeader/> */}
           <Category />
           <HeaderTxt mainTxt="Classroom" subTxt="More" />
 
-          <ScrollView horizontal="true" showsHorizontalScrollIndicator={false}>
+          <ScrollView showsHorizontalScrollIndicator={false}>
             {loading ? (
               <MaterialIndicator size={18} color="#0070c9" />
             ) : empty ? (
@@ -76,6 +75,7 @@ class HomeScreen extends Component {
               </View>
             ) : (
               <FlatList
+                horizontal={true} 
                 data={data}
                 renderItem={({ item, index }) => this._renderItemsCode(item)}
               />

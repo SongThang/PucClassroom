@@ -14,7 +14,6 @@ export default class Auth {
       if (ref) {
         const { uid } = ref;
         this.uid=uid;
-        console.log(uid)
         callback(true, uid);
       } else {
         callback(false, null);

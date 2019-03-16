@@ -9,7 +9,6 @@ export default class WelcomeScreen extends Component {
 
  componentDidMount(){
      this.props.auth.fetchAuthStateChange(ref=>{
-        console.log('ref', ref)
          if(ref){
              this.props.navigation.navigate("Navigation")
          }else{
