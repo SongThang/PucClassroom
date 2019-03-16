@@ -36,9 +36,6 @@ class Schedule extends Component {
 
                         </View>
                         <View >
-
-
-
                         </View>
 
                     </View>
