@@ -1,5 +1,6 @@
-import { authRef } from "./data.service";
+import { authRef, instructorRef } from "./data.service";
 import { auth } from "react-native-firebase";
+import { pushToObject } from "./mapping.service";
 
 export function authStateChange(callback){
     auth().onAuthStateChanged(user=>{
@@ -14,6 +15,12 @@ export function authStateChange(callback){
 export function logIn(email,password){
     return authRef().signInWithEmailAndPassword(email,password)
 }
-export function SignOut(){
-    return auth().signOut()
+export function getAccount(uid,callback){
+    return instructorRef(uid).onSnapshot(docs=>{
+        callback(pushToObject(docs))
+    })
+}
+
+export function signOut(){
+    return auth().signOut();
 }

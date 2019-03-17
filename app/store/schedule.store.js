@@ -1,5 +1,6 @@
 import { observable, action } from "mobx";
 import { getSchedules, getStudentList } from "../service/schedule.service";
+import { setCheckIn } from "../service/checkIn.service";
 
 export default class Schedule {
   @observable loading = false;
@@ -35,4 +36,15 @@ export default class Schedule {
     this.selectedClass=item
   }
  
+  @action
+    checkIn(item,callback){
+        this.process=true;
+        setCheckIn(item).commit().then(()=>{
+            callback(true)
+            this.process=false;
+        }).catch(error=>{
+            callback(false)
+            this.process=false;
+        })
+    }
 }

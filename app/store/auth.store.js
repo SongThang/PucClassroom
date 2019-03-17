@@ -1,8 +1,9 @@
-import { logIn, SignOut, authStateChange } from "../service/auth.service";
+import { logIn, SignOut, authStateChange, getAccount } from "../service/auth.service";
 import { observable, action } from "mobx";
 
 export default class Auth {
   @observable user = null;
+  @observable account= null;
   @observable loading = false;
   @observable process = false;
   @observable uid = null;
@@ -10,10 +11,15 @@ export default class Auth {
   @action
   fetchAuthStateChange(callback) {
     this.process = true;
-    authStateChange(ref => {
-      if (ref) {
-        const { uid } = ref;
-        this.uid=uid;
+    authStateChange(user => {
+      if (user) {
+        const { uid } = user;
+        this.uid = uid;
+        this.user = user
+        getAccount(uid, res => {
+          this.account = res
+          console.log('res', res)
+        })
         callback(true, uid);
       } else {
         callback(false, null);

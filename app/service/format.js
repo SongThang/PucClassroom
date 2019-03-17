@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 export function getDaysSchedule(days) {
     let daysInput = Object.keys(days).map(function(key) {
       return { name: key, value: days[key] };
@@ -17,3 +19,8 @@ export function getDaysSchedule(days) {
     if (result.length > 3) result = result.substring(0, result.length - 3);
     return result;
   }
+
+  export function toDateKey(date){
+    const day=moment(date).format('YYYYMMDD');
+    return Number(day);
+}
