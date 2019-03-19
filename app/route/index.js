@@ -4,6 +4,7 @@ import {
   createAppContainer,
   createStackNavigator,
   createSwitchNavigator,
+  createMaterialTopTabNavigator,
   createDrawerNavigator
 } from 'react-navigation';
 

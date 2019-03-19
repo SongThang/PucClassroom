@@ -34,9 +34,12 @@ class AssignmentScreen extends Component {
       time: null,
       color: "#000",
       isModalVisible: false,
-      student:null
+      student: null,
+      dateKey: toDateKey(new Date()),
+
     };
   }
+  
 
   _onCheckIn = (status) => {
     this.setState({ isModalVisible: !this.state.isModalVisible });
@@ -44,7 +47,7 @@ class AssignmentScreen extends Component {
     const { selectedClass } = this.props.schedule;
     const { room, session, schedule_subject, secondaryRoom, term, key, secondarySession } = selectedClass;
     const checkIn = {
-      student:this.state.student,
+      student: this.state.student,
       key: createId(),
       term: term,
       schedule_subject: schedule_subject,
@@ -65,9 +68,10 @@ class AssignmentScreen extends Component {
     })
   }
 
+  
   _toggleModal = (item) => {
-    if(item){
-      this.setState({student:item})
+    if (item) {
+      this.setState({ student: item })
     }
     this.setState({ isModalVisible: !this.state.isModalVisible });
 
@@ -94,6 +98,8 @@ class AssignmentScreen extends Component {
     const { fromHours, toHours, days } = session;
     const { code, name } = schedule_subject.subject;
     const date = getDaysSchedule(days);
+
+
     return (
       <HeaderDetail
         subject={name}
@@ -105,58 +111,63 @@ class AssignmentScreen extends Component {
         floor={floor.name}
         roomName={RoomName}
         building={building.name}
+        onBack={() => this._onBack()}
       />
     );
   };
   _renderStudentItems = item => {
-    return (
-      <RnStudentList
+    const checkIn = item[this.state.dateKey];
+ 
+    if (checkIn) {
+      return <RnStudentList
         onSelected={() => this._toggleModal(item)}
         Student={item.student.full_name}
         studentID={item.student.puc_id}
         studentSex={item.student.gender.text}
+        bg='#F27676'
+        status={item[this.state.dateKey].status.text}
+       
       />
+    }
+    return (
+      <RnStudentList
+        onSelected={() => this._toggleModal(item)}
+        Student={item.student.full_name}
+        studentID={item.student.puc_id}     
+        bg='#CC61C8'
+        iconName= 'ios-more'
+      />
+
     );
   };
   render() {
     const { studentList } = this.props.schedule;
+    const { process } = this.props.schedule;
     return (
 
       <View style={styles.container}>
-        <BackHeader onBack={() => this._onBack()} />
+
+        {/* <BackHeader onBack={() => this._onBack()} /> */}
         <View >
           <Modal isVisible={this.state.isModalVisible} style={styles.bottomModal}>
             <VerifyModal onClick={this._onCheckIn} close={this._toggleModal} />
           </Modal>
         </View>
-        <ScrollView>
+        <View >
           {this._renderHeaderItems()}
-          <View>
-            <View
-              style={{
-                marginRight: 22,
-                marginTop: 12,
-                marginLeft: 22,
-                flexDirection: "row",
-                justifyContent: "space-between"
-              }}
-            >
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <ICon
-                  style={{ paddingRight: 12, fontSize: 22, color: "blue" }}
-                  name="ios-clipboard"
-                />
-                <Text style={styles.title}>Student List</Text>
-              </View>
-            </View>
-            {
-              <FlatList
-                data={studentList}
-                renderItem={({ item, index }) => this._renderStudentItems(item)}
-              />
-            }
-          </View>
-        </ScrollView>
+        </View>
+        <View style={{ flex: 1 }}>
+
+
+          <FlatList
+            data={studentList}
+            renderItem={({ item, index }) => this._renderStudentItems(item)}
+          />
+
+
+        </View>
+
+
       </View>
     );
   }
@@ -166,7 +177,7 @@ class AssignmentScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f0f0f0"
+    backgroundColor: "#fff"
   },
   SummitButton: {
     alignItems: "center"

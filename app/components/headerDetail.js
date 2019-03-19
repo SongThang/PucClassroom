@@ -16,32 +16,47 @@ export default (headerDetail = ({
   major,
   floor,
   roomName,
-  building
+  building,
+  onBack,
+  status
 }) => {
+
   return (
     <View>
       <View
         style={styles.ImageBackground}
-        // source={require("../../img/images.jpeg")}
+      // source={require("../../img/images.jpeg")}
       >
         <SafeAreaView style={styles.Header}>
           <View>
             <View>
               <View>
+              <View style={[styles.row, styles.m10]}>
+              <TouchableOpacity
+            onPress={onBack} style={{ flex: 1}}>
+              <ICon style={styles.icon} name="ios-arrow-back" />
+            </TouchableOpacity>
+           
+            <TouchableOpacity>
+          
+              <ICon style={styles.icon} name="ios-more" />
+            </TouchableOpacity>
+            </View>
+
                 <View style={[styles.row, styles.m10]}>
                   <Text
                     style={{
-                      color: "#2b2b2b",
-                      fontSize: 22,
+                      color: "#fff",
+                      fontSize: 18,
                       fontWeight: "600",
                       flex: 1
                     }}
                   >
-                    {subject}
+                    {subject} 
                   </Text>
                   <Text
                     style={{
-                      color: "#2b2b2b",
+                      color: "#fff",
                       fontSize: 11,
                       fontWeight: "200"
                     }}
@@ -54,7 +69,7 @@ export default (headerDetail = ({
                   <Text
                     style={styles.text}
                   >
-                    {fromH} to {toH}
+                    {fromH} - {toH}
                   </Text>
                 </View>
                 <View style={styles.row}>
@@ -76,18 +91,18 @@ export default (headerDetail = ({
               </View>
             </View>
           </View>
-            <View style={styles.row}>
-            <ICon style={styles.si} name="ios-business"/>
-              <Text style={styles.text}>{roomName}</Text>
-            </View>
-            <View style={styles.row}>
-            <ICon style={styles.si} name="ios-apps"/>
-              <Text style={styles.text}>{floor}</Text>
-            </View>
-            <View style={styles.row}>
-            <ICon style={styles.si} name="ios-home"/>
-              <Text style={styles.text}>{building}</Text>
-            </View>
+          {/* <View style={styles.row}>
+            <ICon style={styles.si} name="ios-business" />
+            <Text style={styles.text}>{roomName}</Text>
+          </View>
+          <View style={styles.row}>
+            <ICon style={styles.si} name="ios-apps" />
+            <Text style={styles.text}>{floor}</Text>
+          </View>
+          <View style={styles.row}>
+            <ICon style={styles.si} name="ios-home" />
+            <Text style={styles.text}>{building}</Text>
+          </View> */}
         </SafeAreaView>
       </View>
     </View>
@@ -96,38 +111,37 @@ export default (headerDetail = ({
 
 const styles = StyleSheet.create({
   ImageBackground: {
-    backgroundColor: "#fff",
-    borderBottomLeftRadius: 32,
-    borderBottomRightRadius: 32,
-    paddingVertical:20,
+    backgroundColor: "#F27676",
+    paddingVertical: 12,
   },
   Header: {
-    marginRight: 22,
-    marginLeft: 22
+    marginRight: 16,
+    marginLeft: 16
   },
   icon: {
-    fontSize: 32,
-    color: "#2d2d2d"
+    fontSize: 28,
+    color: "#fff"
   },
   si: {
-    fontSize: 15,
-    color: "#2b2b2b",
-    marginRight: 15
+    fontSize: 14,
+    color: "#fff",
+    marginRight: 12,
+   
   },
   row: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 5
+    // marginBottom: 5
   },
   m10: {
     marginBottom: 10
   },
 
   com: {
-    flexDirection:'row',
+    flexDirection: 'row',
   },
   text: {
-    color: "#2b2b2b",
+    color: "#fff",
     fontSize: 14,
     fontWeight: "200"
   }

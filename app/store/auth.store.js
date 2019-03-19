@@ -1,4 +1,4 @@
-import { logIn, SignOut, authStateChange, getAccount } from "../service/auth.service";
+import { logIn, signOut, authStateChange, getAccount } from "../service/auth.service";
 import { observable, action } from "mobx";
 
 export default class Auth {
@@ -43,7 +43,7 @@ export default class Auth {
   @action
   logOut() {
     this.process = true;
-    SignOut()
+    signOut()
       .then(() => {
         this.process = false;
       })

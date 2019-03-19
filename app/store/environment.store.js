@@ -5,10 +5,6 @@ export default class Environment{
     @observable config=null;
     @observable term=null;
 
-    constructor(){
-        this.fetchEnvironment();
-    }
-
     @action
     fetchEnvironment(){
         this.term=null;

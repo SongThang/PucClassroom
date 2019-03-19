@@ -13,33 +13,81 @@ export default (StudentList = ({
   studentSex,
   Student,
   studentID,
-  onSelected
+  onSelected,
+  bg,
+  status,
+  iconName
+
 }) => {
-  return (
+
+if(status){
+  return(
     <View>
-      <View
-        style={{
-          borderLeftColor: "#CC61C8",
-          borderLeftWidth: 5,
-          marginLeft: 12,
-          marginTop: 12,
-          padding: 12,
-          backgroundColor: "#f7f9fa",
-          borderRadius: 12,
-          borderBottomColor: '#CC61C8',
-          borderBottomWidth: 1,
-          justifyContent: "center"
-        }}
+<View style={{ marginHorizontal: 6 }} >
+      <View style={{
+        // borderLeftColor: "#CC61C8",
+        borderLeftColor: { bg },
+        borderLeftWidth: 5,
+        marginTop: 6,
+        padding: 12,
+        borderRadius: 2,
+        justifyContent: "center",
+        backgroundColor: "#EDEFEE"
+
+      }}
+        borderLeftColor={bg}
+
       >
         <TouchableOpacity onPress={onSelected}>
           <View style={{ flexDirection: "row", justifyContent: "space-between", }}>
-            <View style={{ marginLeft: 12, flexDirection: "row", justifyContent: "center" }}>
-              <ICon style={styles.Icon} name="ios-contacts" />
-              <Text style={{ fontSize: 16, paddingLeft: 12 }}>{Student}</Text>
+            <View style={{ flexDirection: "column", justifyContent: "center" }}>
+
+              <Text style={{ fontSize: 16, }}>{Student} </Text>
+              <Text style={{ fontSize: 11, fontWeight: '300' }}>{studentID}</Text>
+            </View>
+            <View style={{ flexDirection: "row", justifyContent: "center" }}>
+              <View style={styles.status} backgroundColor="#fff">
+                <Text style={{ color: '#2b2b2b', fontWeight: '400', fontSize: 11 }}>{status}</Text>
+              </View>
+         
+
+            </View>
+          </View>
+        </TouchableOpacity>
+      </View>
+    </View>
+
+    </View>
+  )
+}
+
+  return (
+    <View style={{ marginHorizontal: 6 }} >
+      <View style={{
+        // borderLeftColor: "#CC61C8",
+        borderLeftColor: { bg },
+        borderLeftWidth: 5,
+        marginTop: 6,
+        padding: 12,
+        borderRadius: 2,
+        justifyContent: "center",
+        backgroundColor: "#EDEFEE"
+
+      }}
+        borderLeftColor={bg}
+
+      >
+        <TouchableOpacity onPress={onSelected}>
+          <View style={{ flexDirection: "row", justifyContent: "space-between", }}>
+            <View style={{ flexDirection: "column", justifyContent: "center" }}>
+
+              <Text style={{ fontSize: 16, }}>{Student} </Text>
+              <Text style={{ fontSize: 11, fontWeight: '300' }}>{studentID}</Text>
             </View>
             <View style={{ marginLeft: 12, flexDirection: "row", justifyContent: "center" }}>
-              <Text style={{ fontSize: 16, fontWeight: '300', paddingRight: 12 }}>{studentID}</Text>
-              <Text style={{ fontSize: 16, fontWeight: '300' }}>{studentSex}</Text>
+            
+              <ICon style={styles.icon} name={iconName} />
+
             </View>
           </View>
         </TouchableOpacity>
@@ -59,12 +107,20 @@ const styles = StyleSheet.create({
   Icon: {
     fontSize: 22,
   },
+  // status: {
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   paddingLeft: 15,
+  //   paddingRight: 15,
+  //   height: 30,
+
+  // },
   status: {
     justifyContent: 'center',
-    alignItems: 'center',
-    paddingLeft: 15,
-    paddingRight: 15,
-    height: 30,
-    borderRadius: 25
-  },
+    alignItems: 'center', 
+    paddingLeft: 8,
+    paddingRight: 8, 
+    borderRadius: 25,
+    height: 20
+},
 });

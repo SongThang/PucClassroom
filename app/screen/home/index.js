@@ -64,7 +64,7 @@ class HomeScreen extends Component {
 
         <ScrollView showsVerticalScrollIndicator={false}>
           <Category />
-          <HeaderTxt mainTxt="Classroom" subTxt="More" />
+          <HeaderTxt mainTxt="Classroom" />
 
           <ScrollView showsHorizontalScrollIndicator={false}>
             {loading ? (
