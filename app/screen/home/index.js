@@ -24,8 +24,8 @@ class HomeScreen extends Component {
       }
     });
   }
-  _onProfile = () => {
-    this.props.navigation.navigate("Profile");
+  _onSalary = () => {
+    this.props.navigation.navigate("Salary");
   };
   _onDetails = (classKey, item) => {
     const { term } = this.props.environment;
@@ -63,7 +63,7 @@ class HomeScreen extends Component {
         <Header onClick={() => this._onProfile()} />
 
         <ScrollView showsVerticalScrollIndicator={false}>
-          <Category />
+          <Category Salary={this._onSalary}/>
           <HeaderTxt mainTxt="Classroom" />
 
           <ScrollView showsHorizontalScrollIndicator={false}>

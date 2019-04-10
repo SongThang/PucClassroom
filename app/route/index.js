@@ -17,8 +17,10 @@ import ProfileScreen from '../screen/profile'
 import DetailScreen from '../screen/details'
 import LoginScreen from '../screen/login'
 import WelcomeScreen from '../screen/welcome'
+import SalaryScreen from '../screen/home/salary';
 const HomeTab = createStackNavigator({
   HomeStack:HomeScreen,
+  Salary: SalaryScreen,
   Profile: ProfileScreen,
   Details:DetailScreen,
   },{

@@ -5,11 +5,12 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 // create a component
 class Category extends Component {
     render() {
+        const {Salary} = this.props
         return (
             <View style={styles.container}>
                 <View style={styles.cate}>
                     <View style={styles.row}>
-                        <TouchableOpacity style={[styles.item, styles.c1,]}>
+                        <TouchableOpacity style={[styles.item, styles.c1,]} onPress={Salary}>
                             <View style={styles.row}>
                                 <Image source={require('../img/salary.png')} style={styles.img}></Image>
                                 <Text style={styles.txt}>Salary Slips</Text>

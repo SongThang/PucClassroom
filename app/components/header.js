@@ -12,7 +12,7 @@ export default (Header = ({onClick}) => {
           <TouchableOpacity style={styles.profile} onPress={onClick}>
             <Image source={require("../img/user.jpg")} style={styles.img} />
           </TouchableOpacity>
-          <Text style={styles.txt}>Prof. Uncute Real Zin</Text>
+          <Text style={styles.txt}>Professor</Text>
         </View>
         <View style={styles.right}>
           {/* <TouchableOpacity>
