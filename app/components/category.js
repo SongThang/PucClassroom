@@ -5,23 +5,23 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 // create a component
 class Category extends Component {
     render() {
+        const {Salary} = this.props
         return (
             <View style={styles.container}>
                 <View style={styles.cate}>
                     <View style={styles.row}>
-                        <TouchableOpacity style={[styles.item, styles.c1]}>
+                        <TouchableOpacity style={[styles.item, styles.c1,]} onPress={Salary}>
                             <View style={styles.row}>
-                                <Image source={require('../img/assignment.png')} style={styles.img}></Image>
-
-                                <Text style={styles.txt}>Assignment</Text>
+                                <Image source={require('../img/salary.png')} style={styles.img}></Image>
+                                <Text style={styles.txt}>Salary Slips</Text>
                             </View>
                         </TouchableOpacity>
                         <View style={styles.space}></View>
                         <TouchableOpacity style={[styles.item, styles.c2]}>
                             <View style={styles.row}>
-                                <Image source={require('../img/homework.png')} style={styles.img}></Image>
+                                <Image source={require('../img/assignment.png')} style={styles.img}></Image>
 
-                                <Text style={styles.txt}>Homework</Text>
+                                <Text style={styles.txt}>Assignment</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -29,17 +29,18 @@ class Category extends Component {
                     <View style={styles.row}>
                         <TouchableOpacity style={[styles.item, styles.c3]}>
                             <View style={styles.row}>
-                                <Image source={require('../img/quest.png')} style={styles.img}></Image>
+                                <Image source={require('../img/grade.png')} style={styles.img}></Image>
 
-                                <Text style={styles.txt}>Quiz</Text>
+                                <Text style={styles.txt}>Grade Shift</Text>
                             </View>
                         </TouchableOpacity>
                         <View style={styles.space}></View>
                         <TouchableOpacity style={[styles.item, styles.c4]}>
                             <View style={styles.row}>
-                                <Image source={require('../img/research.png')} style={styles.img}></Image>
-
-                                <Text style={styles.txt}>Research</Text>
+                                <Image source={require('../img/attendent.png')} style={styles.img}></Image>
+                                <View >
+                                <Text style={styles.txt}>My Attendent</Text>
+                                </View>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -70,17 +71,26 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         flex: 1,
         justifyContent: 'center',
-        backgroundColor: '#EDEFEE',
+        
         paddingLeft: 12
 
     },
 
-    color: {
-        backgroundColor: '#EDEFEE'
+    c1: {
+        backgroundColor: '#C25851'
+    },
+    c2: {
+        backgroundColor: '#5D9FD4'
+    },
+    c3: {
+        backgroundColor: '#F0C632'
+    },
+    c4: {
+        backgroundColor: '#D365A8'
     },
     img: {
-        width: 45,
-        height: 45,
+        width: 40,
+        height: 40,
         marginRight: 10
 
     },
@@ -90,8 +100,9 @@ const styles = StyleSheet.create({
 
     },
     txt: {
-        fontSize: 16,
-        fontWeight: '100'
+        fontSize: 15,
+        fontWeight: '600',
+        color:'#fff'
     }
 });
 

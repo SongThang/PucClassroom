@@ -24,3 +24,8 @@ export function getDaysSchedule(days) {
     const day=moment(date).format('YYYYMMDD');
     return Number(day);
 }
+
+
+export function toCalendar(date){
+  return moment(date).calendar()
+}

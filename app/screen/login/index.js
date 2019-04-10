@@ -39,7 +39,8 @@ export default class LoginScreen extends Component {
             <View style={{ flex: 1, backgroundColor:"#fff" }}>
                 <View style={{
                     alignItems: "center",
-                    backgroundColor: '#0070c9',
+                    // backgroundColor: '#0070c9',
+                    backgroundColor: '#34A853',
                     // shadowColor: "#CFCCDC",
                     shadowColor: "#EDEFEE",
                     shadowOffset: {
@@ -53,7 +54,7 @@ export default class LoginScreen extends Component {
                     <Image style={styles.img} source={require('../../img/bg.png')} />
 
 
-                    <Text style={{ color: '#d2d2d2', fontSize: 20, fontWeight: '600', marginTop: 10, marginBottom: 20 }}>PUC Administrator</Text>
+                    <Text style={{ color: '#fff', fontSize: 20, fontWeight: '600', marginTop: 10, marginBottom: 20 }}>PUC Classroom</Text>
                 </View>
 
 
@@ -63,7 +64,7 @@ export default class LoginScreen extends Component {
 
                         <TextField
                             label="Email"
-                            baseColor="#d2d2d2"
+                            baseColor="#2b2b2b"
                             value={email}
                             onChangeText={email => this.setState({ email })}
                             keyboardType="email-address"
@@ -99,7 +100,6 @@ export default class LoginScreen extends Component {
                     <View style={{ marginTop: 150, flex: 2 }}>
 
                         <View style={{ alignItems: "center", justifyContent: "center" }}>
-
                             <Text style={{ marginTop: 2, color: "#2b2b2b", fontSize: 10, }}>All rights reserved.</Text>
                             <Text style={{ marginTop: 6, color: "#2b2b2b", fontSize: 10, }}>Developed by PUC Computer Science</Text>
                         </View>
@@ -125,9 +125,9 @@ const styles = {
     },
     img: {
         marginTop: 50,
-        width: 110,
-        height: 110,
-        borderRadius: 55,
+        width: 100,
+        height: 100,
+        borderRadius: 50,
     },
     input: {
         borderColor: '#ebebeb',

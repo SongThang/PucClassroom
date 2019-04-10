@@ -15,12 +15,12 @@ export default (Header = ({onClick}) => {
           <Text style={styles.txt}>Professor</Text>
         </View>
         <View style={styles.right}>
-          <TouchableOpacity>
+          {/* <TouchableOpacity>
             <Icon name="bookmark" size={20} style={styles.icon} />
-          </TouchableOpacity>
-          <TouchableOpacity>
+          </TouchableOpacity> */}
+          {/* <TouchableOpacity>
             <Icon name="project" size={20} />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     </View>
@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
     height: 55,
     borderBottomWidth: 0.5,
     borderBottomColor: "#d5d5d5",
-    justifyContent: "center"
+    justifyContent: "center",
+    
   },
   row: {
     flexDirection: "row",
